@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+struct Box {
+    double length;
+    double width;
+    double height;
+};
+
+// Function to calculate the volume of the box
+double calculateVolume(struct Box* boxPtr) {
+    return boxPtr->length * boxPtr->width * boxPtr->height;
+}
+
+// Function to calculate the total surface area of the box
+double calculateSurfaceArea(struct Box* boxPtr) {
+    double length = boxPtr->length;
+    double width = boxPtr->width;
+    double height = boxPtr->height;
+    
+    return 2 * (length * width + length * height + width * height);
+}
+
+int main() {
+    // Create a box object
+    struct Box myBox = { 3.0, 4.0, 5.0 };
+    
+    // Create a pointer to the box object
+    struct Box* boxPtr = &myBox;
+    
+    // Calculate the volume using the structure pointer and dot operator
+    double volume = (*boxPtr).length * (*boxPtr).width * (*boxPtr).height;
+    printf("Volume: %.2f\n", volume);
+    
+    // Calculate the total surface area using the structure pointer and dot operator
+    double surfaceArea = 2 * ((*boxPtr).length * (*boxPtr).width + (*boxPtr).length * (*boxPtr).height + (*boxPtr).width * (*boxPtr).height);
+    printf("Total Surface Area: %.2f\n", surfaceArea);
+    
+    // Calculate the volume using the arrow operator (->)
+    volume = boxPtr->length * boxPtr->width * boxPtr->height;
+    printf("Volume: %.2f\n", volume);
+    
+    // Calculate the total surface area using the arrow operator (->)
+    surfaceArea = 2 * (boxPtr->length * boxPtr->width + boxPtr->length * boxPtr->height + boxPtr->width * boxPtr->height);
+    printf("Total Surface Area: %.2f\n", surfaceArea);
+    
+    return 0;
+}
